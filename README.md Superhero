@@ -1,0 +1,39 @@
+# What-I-like-program
+what i like program
+class Superhero:
+    def __init__(self, name, secret_identity, powers, health=100, energy=100):
+        # Public attributes
+        self.name = name
+        self.powers = powers
+        
+        # Protected attributes
+        self._secret_identity = secret_identity
+        self._health = health
+        
+        # Private attributes
+        self.__energy = energy
+    
+    # Public methods
+    def use_power(self, power_name):
+        if power_name in self.powers:
+            print(f"{self.name} uses {power_name}!")
+            self.__energy -= 10
+            return True
+        print(f"{self.name} doesn't have {power_name} power!")
+        return False
+    
+    def rest(self):
+        print(f"{self.name} is resting...")
+        self.__energy = min(100, self.__energy + 30)
+        self._health = min(100, self._health + 10)
+    
+    # Getter methods (encapsulation)
+    def get_energy(self):
+        return self.__energy
+    
+    def get_secret_identity(self):
+        return self._secret_identity
+    
+    # Special method
+    def __str__(self):
+        return f"{self.name} ({self._secret_identity}) | Powers: {', '.join(self.powers)}"
